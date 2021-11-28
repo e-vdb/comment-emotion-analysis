@@ -11,3 +11,11 @@ A simple Machine learning application to predict the emotion from a user's comme
 Emotion dataset for NLP
 
 The dataset is available on Kaggle: https://www.kaggle.com/praveengovi/emotions-dataset-for-nlp
+
+## Machine learning model
+- NLP processing
+- Linear SVC
+
+## Task list
+- [x] Train model
+- [x] Develop Streamlit web interface
