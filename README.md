@@ -1,7 +1,7 @@
 # comment-emotion-analysis
 
 ## Summary
-A simple Machine learning application to predict the emotion from a user's comment
+A simple Machine learning application to predict the emotion from a user's comment.
 
 ## Streamlit web app
 
@@ -25,3 +25,7 @@ The dataset is available on Kaggle: https://www.kaggle.com/praveengovi/emotions-
 ## Task list
 - [x] Train model
 - [x] Develop Streamlit web interface
+
+## Repository content
+- Jupyter notebook with data pre-processing and model training
+- app folder with streamlit web app script
