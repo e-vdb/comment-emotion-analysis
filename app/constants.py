@@ -1,0 +1,1 @@
+CHOICES = (None, 'Emotion analysis')
