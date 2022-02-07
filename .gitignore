@@ -134,3 +134,8 @@ dmypy.json
 # Pickle files
 *.sav
 *.pickle
+
+# images files
+*.png
+*.jpg
+*.gif
