@@ -21,8 +21,7 @@ class App:
         )
 
     def display_info(self):
-        st.markdown("## Emotion analysis")
-        st.write(EMOTION_ANALYSIS)
+        st.markdown(EMOTION_ANALYSIS)
 
     def show(self):
         # Set the app title
