@@ -47,7 +47,7 @@ class App:
         st.write("A machine learning application that predicts the emotion from a user's comment.")
         with st.form('test'):
             self.comment = st.text_input(label="💬 How do you feel today?")
-            if st.form_submit_button('Make prediction'):
+            if st.form_submit_button(' 👉 Make prediction'):
                 self.display_prediction()
 
     def display_prediction(self):
