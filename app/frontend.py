@@ -2,7 +2,7 @@ import streamlit as st
 from predictions import load_pickle, make_prediction
 import sys
 from streamlit import cli as stcli
-from constants import CHOICES, EMOTION_ANALYSIS
+from constants import CHOICES, EMOTION_ANALYSIS, LICENCE
 st.set_page_config(layout="wide")
 
 
@@ -22,6 +22,7 @@ class App:
 
     def display_info(self):
         st.markdown(EMOTION_ANALYSIS)
+        st.markdown(LICENCE)
 
     def show(self):
         # Set the app title
