@@ -21,3 +21,10 @@ EMOTION_ANALYSIS = """
                    - Natural Language Processing
                    - Model:  Linear support vector machine
                    """
+
+LICENCE = """
+          ## About this app
+          Author: Emeline Van der Beken
+          
+          Pictures used for illustration : Snoopy character from Peanuts (Copyright (c) Charles M. Schulz)
+          """
