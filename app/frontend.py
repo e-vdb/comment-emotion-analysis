@@ -2,7 +2,7 @@ import streamlit as st
 from predictions import load_pickle, make_prediction
 import sys
 from streamlit import cli as stcli
-from constants import CHOICES
+from constants import CHOICES, EMOTION_ANALYSIS
 st.set_page_config(layout="wide")
 
 
@@ -20,17 +20,21 @@ class App:
             help="You need to select what you'd like the application to do.",
         )
 
+    def display_info(self):
+        st.markdown("## Emotion analysis")
+        st.write(EMOTION_ANALYSIS)
+
     def show(self):
         # Set the app title
         st.title("Streamlit demo ")
         st.write(
-            "A few examples of streamlit web applications "
+            "A basic demo of streamlit web application "
         )
         self.choose()
         if self.choice is not None:
-            callables = [self.get_comment]
+            callables = [self.display_info, self.get_comment]
 
-            args = [[]]
+            args = [[], []]
             possible_choices = CHOICES[1:]
             map_actions_to_callables = dict(zip(possible_choices, callables))
 
@@ -41,16 +45,16 @@ class App:
 
     def get_comment(self, *args):
         # Declare a form to receive a comment
-        st.write("A machine learning application to predict the emotion from a user's comment.")
+        st.write("A machine learning application that predicts the emotion from a user's comment.")
         with st.form('test'):
-            self.comment = st.text_input(label="How do you feel today?")
+            self.comment = st.text_input(label="💬 How do you feel today?")
             if st.form_submit_button('Make prediction'):
                 self.display_prediction()
 
     def display_prediction(self):
         output = make_prediction(self.ML_model, self.encoder, self.comment)
         # Display results of the NLP task
-        st.header("Results")
+        st.header("Result")
         st.write(output)
         filename = 'pictures/' + output + '.jpg'
         st.image(filename, use_column_width=False)
