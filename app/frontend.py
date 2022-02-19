@@ -9,8 +9,8 @@ st.set_page_config(layout="wide")
 
 class App:
     def __init__(self):
-        self.ML_model = load_pickle('finalized_model.sav')
-        self.encoder = load_pickle('encoder.pickle')
+        self.ML_model = load_pickle('app/finalized_model.sav')
+        self.encoder = load_pickle('app/encoder.pickle')
         self.comment = ""
         self.conn = self.init_connection()
         self.cursor = self.conn.cursor()
@@ -67,7 +67,7 @@ class App:
         # Display results of the NLP task
         st.header("Result")
         st.write(self.output)
-        filename = 'pictures/' + self.output + '.jpg'
+        filename = 'app/pictures/' + self.output + '.jpg'
         st.image(filename, use_column_width=False)
         st.session_state.output = self.output
 
