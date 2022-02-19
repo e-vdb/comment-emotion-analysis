@@ -3,6 +3,7 @@ from predictions import load_pickle, make_prediction
 import sys
 from streamlit import cli as stcli
 from constants import CHOICES, EMOTION_ANALYSIS, LICENCE
+from psycopg2 import connect
 st.set_page_config(layout="wide")
 
 
@@ -11,7 +12,12 @@ class App:
         self.ML_model = load_pickle('finalized_model.sav')
         self.encoder = load_pickle('encoder.pickle')
         self.comment = ""
+        self.conn = self.init_connection()
+        self.cursor = self.conn.cursor()
 
+    @staticmethod
+    def init_connection():
+        return connect(**st.secrets["postgres"])
 
     def choose(self) -> None:
         """Display the different possible actions."""
@@ -74,9 +80,20 @@ class App:
             button = st.button('submit')
             if button:
                 st.write(row)
+                self.insert_row(self.comment, st.session_state.output, true_feeling)
                 del st.session_state['output']
                 st.success("Thanks for your contribution!")
 
+    def insert_row(self, user_comment, prediction, user_feeling):
+        query = """
+                INSERT INTO emotionAnalysis
+                (comment, pred, feeling)
+                VALUES (%s, %s, %s)
+                returning emotionAnalysis;
+                """
+        self.cursor.execute(query,
+                            (user_comment, prediction, user_feeling))
+        self.conn.commit()
 
 
 def main():
