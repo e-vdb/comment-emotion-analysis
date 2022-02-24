@@ -1,6 +1,6 @@
 CHOICES = (None,
-           'Display information',
-           'Emotion analysis')
+           ' ℹ️ Display information',
+           '🔮 Emotion analysis')
 
 EMOTION_ANALYSIS = """
                    ## Emotion Analysis
