@@ -1,6 +1,8 @@
 import streamlit as st
 from predictions import load_pickle, make_prediction
 import sys
+from pathlib import Path
+from os.path import dirname, join
 from streamlit import cli as stcli
 from constants import CHOICES, EMOTION_ANALYSIS, LICENCE
 from psycopg2 import connect
@@ -9,8 +11,8 @@ st.set_page_config(layout="wide")
 
 class App:
     def __init__(self):
-        self.ML_model = load_pickle('app/finalized_model.sav')
-        self.encoder = load_pickle('app/encoder.pickle')
+        self.ML_model = load_pickle(join(Path(dirname(__file__)), 'finalized_model.sav'))
+        self.encoder = load_pickle(join(Path(dirname(__file__)), 'encoder.pickle'))
         self.comment = ""
         self.conn = self.init_connection()
         self.cursor = self.conn.cursor()
@@ -67,8 +69,9 @@ class App:
         # Display results of the NLP task
         st.header("Result")
         st.write(self.output)
-        filename = 'app/pictures/' + self.output + '.jpg'
-        st.image(filename, use_column_width=False)
+        filename = 'pictures/' + self.output + '.jpg'
+        filepath = join(Path(dirname(__file__)), filename)
+        st.image(filepath, use_column_width=False)
         st.session_state.output = self.output
 
     def collect_contribution(self):
